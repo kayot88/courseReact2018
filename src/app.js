@@ -4,23 +4,20 @@ import Select from 'react-select'
 import UserForm from './components/user-form'
 import ArticleList from './components/article-list'
 import articles from './fixtures'
+import DayPickerComponent from './components/dayPicker'
 
 class App extends Component {
   state = {
     openItem: null
   }
   render() {
-    return (
-      <div>
+    return <div>
         <UserForm />
-        <Select
-          options={this.options}
-          value={this.state.openItem}
-          onChange={this.handleSelect}
-        />
+        <Select options={this.options} value={this.state.openItem} onChange={this.handleSelect} />
+        <DayPickerComponent />
         <ArticleList articles={articles} ref={this.setArticleListRef} />
+
       </div>
-    )
   }
   get options() {
     return articles.map((article) => ({
@@ -32,8 +29,13 @@ class App extends Component {
     this.setState({ openItem })
     return console.log(this.state)
   }
+
   setArticleListRef = (ref) => {
     console.log('---', ref, findDOMNode(ref))
+    setTimeout(() => {
+      // console.log(toggleOpenItem)
+      ref.toggleOpenItem(articles[0].id)
+    }, 1000)
   }
 }
 
