@@ -1,25 +1,18 @@
 import React, { Component } from 'react'
+import testDecorator from '../decorators/testDecorator'
 
 class UserComment extends Component {
-  state = {
-    openComment: false
-  }
-  handlerBtnClick = () => {
-    const temp = this.state.openComment ? false : true
-    this.setState({ openComment: temp })
-    console.log('name_click', this.state.openComment)
-  }
   render() {
-    const { userComment } = this.props
+    const { userComment, handlerBtnClick, openComment } = this.props
     return (
       <div>
-        <button onClick={this.handlerBtnClick}>
+        <button onClick={handlerBtnClick}>
           {userComment ? userComment.user : 'close'}
         </button>
-        {this.state.openComment && <section>{userComment.text}</section>}
+        {openComment && <section>{userComment.text}</section>}
       </div>
     )
   }
 }
 
-export default UserComment
+export default testDecorator(UserComment)
