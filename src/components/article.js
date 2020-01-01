@@ -2,7 +2,12 @@ import React, { PureComponent } from 'react'
 import CommentsList from './comments-list'
 class Article extends PureComponent {
   state = {
-    commentOpen: false
+    commentOpen: false,
+    hasError: false
+  }
+  componentDidCatch(err) {
+    console.log('---', err)
+    this.setState({ hasError: true })
   }
 
   handlerClick = () => {
@@ -23,9 +28,14 @@ class Article extends PureComponent {
         </button>
         {isOpen && (
           <div>
-            <section>{article.text}</section>
-            <button onClick={this.handlerClick}>Comments</button>
-            {this.state.commentOpen && <CommentsList comments={article.comments} /> }
+            <section className="test__article-body">{article.text}</section>
+            <button onClick={this.handlerClick} className="test__article-btn">
+              Comments
+            </button>
+            {this.state.commentOpen &&
+              !this.state.hasError && (
+                <CommentsList comments={article.comments} />
+              )}
           </div>
         )}
       </div>

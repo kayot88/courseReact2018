@@ -15,7 +15,7 @@ class App extends Component {
         <UserForm />
         <Select options={this.options} value={this.state.openItem} onChange={this.handleSelect} />
         <DayPickerComponent />
-        <ArticleList articles={articles} ref={this.setArticleListRef} />
+        <ArticleList articles={articles} ref={this.setArticleListRef}  />
 
       </div>
   }
