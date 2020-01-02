@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Article from './article'
+import Article from '../components/article'
 import accordeon from '../decorators/accordeon'
 
 export class ArticleList extends Component {
