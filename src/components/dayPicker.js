@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
-import DayPicker, {DateUtils} from 'react-day-picker'
+import DayPicker, { DateUtils } from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
 
 export default class DayPickerComponent extends Component {
   static defaultProps = {
     numberOfMonths: 2
   }
-   constructor(props) {
-    super(props);
-    this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleResetClick = this.handleResetClick.bind(this);
-    this.state = this.getInitialState();
+  constructor(props) {
+    super(props)
+    this.handleDayClick = this.handleDayClick.bind(this)
+    this.handleResetClick = this.handleResetClick.bind(this)
+    this.state = this.getInitialState()
   }
   getInitialState() {
     return {
       from: undefined,
-      to: undefined,
-    };
+      to: undefined
+    }
   }
-
 
   handleDayClick(day) {
     const range = DateUtils.addDayToRange(day, this.state)

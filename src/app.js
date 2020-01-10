@@ -11,13 +11,18 @@ class App extends Component {
     openItem: null
   }
   render() {
-    return <div>
+    return (
+      <div>
         <UserForm />
-        <Select options={this.options} value={this.state.openItem} onChange={this.handleSelect} />
+        <Select
+          options={this.options}
+          value={this.state.openItem}
+          onChange={this.handleSelect}
+        />
         <DayPickerComponent />
-        <ArticleList articles={articles} ref={this.setArticleListRef}  />
-
+        <ArticleList articles={articles} ref={this.setArticleListRef} />
       </div>
+    )
   }
   get options() {
     return articles.map((article) => ({

@@ -6,12 +6,13 @@ class UserForm extends Component {
     username: ''
   }
   render() {
-    return <div>
+    return (
+      <div>
         Username:
         <input value={this.state.username} onChange={this.handleSubmit} />
       </div>
+    )
   }
-
 
   handleSubmit = (e) => {
     this.setState({ username: e.target.value })

@@ -10,11 +10,16 @@ export default (OriginalComponent) => {
       console.log('name_click', this.state.openComment)
       this.setState((state) => {
         openComment: !state.openComment
-      }
-      );
+      })
     }
     render() {
-      return <OriginalComponent {...this.props} {...this.state} handlerBtnClick={this.handlerBtnClick} />
+      return (
+        <OriginalComponent
+          {...this.props}
+          {...this.state}
+          handlerBtnClick={this.handlerBtnClick}
+        />
+      )
     }
   }
 }
