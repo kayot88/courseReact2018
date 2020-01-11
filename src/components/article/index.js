@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import CommentsList from '../comments-list'
+import { deleteArticle } from '../../ac'
 import './style.css'
 class Article extends PureComponent {
   state = {
@@ -11,6 +13,9 @@ class Article extends PureComponent {
   componentDidCatch(err) {
     console.log('---', err)
     this.setState({ hasError: true })
+  }
+  handleDelete = () => {
+    return this.props.deleteArticle(this.props.article.id)
   }
 
   handlerClick = () => {
@@ -39,6 +44,7 @@ class Article extends PureComponent {
         >
           {isOpen ? 'close' : 'open'}
         </button>
+        <button onClick={this.handleDelete}>delete me</button>
         {isOpen && (
           <div>
             <CSSTransition in={inProp} timeout={200} classNames="article">
@@ -55,6 +61,10 @@ class Article extends PureComponent {
       </div>
     )
   }
+
   getTitleRef = (titleRef) => console.log(titleRef)
 }
-export default Article
+export default connect(
+  null,
+  { deleteArticle }
+)(Article)

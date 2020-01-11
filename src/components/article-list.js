@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Article from '../components/article'
 import accordeon from '../decorators/accordeon'
 
@@ -9,7 +10,6 @@ export class ArticleList extends Component {
 
   get body() {
     const { articles, toggleOpenItem, openItemId } = this.props
-    //  console.log(typeof articles)
     return articles.map((item) => (
       <li key={item.id} className="test__article-list--item">
         <Article
@@ -29,4 +29,6 @@ export class ArticleList extends Component {
 
 const ArticleListWithAccordeon = accordeon(ArticleList)
 
-export default ArticleListWithAccordeon
+export default connect((state) => ({
+  articles: state.articles
+}))(ArticleListWithAccordeon)
