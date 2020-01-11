@@ -5,6 +5,7 @@ import UserForm from './components/user-form'
 import ArticleList from './components/article-list'
 import articles from './fixtures'
 import DayPickerComponent from './components/dayPicker'
+import Counter from './components/counter'
 
 class App extends Component {
   state = {
@@ -20,6 +21,7 @@ class App extends Component {
           onChange={this.handleSelect}
         />
         <DayPickerComponent />
+        <Counter />
         <ArticleList articles={articles} ref={this.setArticleListRef} />
       </div>
     )
