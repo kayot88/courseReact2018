@@ -5,8 +5,6 @@ export default (OriginalComponent) => {
     state = { openComment: false }
 
     handlerBtnClick = () => {
-      // const temp = this.state.openComment ? false : true
-      // this.setState({ openComment: temp })
       console.log('name_click', this.state.openComment)
       this.setState((state) => {
         openComment: !state.openComment

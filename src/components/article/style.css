@@ -1,14 +1,17 @@
 .article-enter {
   opacity: 0;
+  transform: scale(0.9);
 }
 .article-enter-active {
   opacity: 1;
-  transition: opacity 200ms;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
 }
 .article-exit {
   opacity: 1;
 }
 .article-exit-active {
   opacity: 0;
-  transition: opacity 200ms;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }

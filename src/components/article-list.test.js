@@ -13,6 +13,7 @@ beforeAll(() => {
 })
 
 describe('ArticleList', () => {
+  console.log(typeof articles)
   it('should render articleList', () => {
     const container = shallow(
       <ArticleList articles={articles} toggleOpenItem={() => {}} />
@@ -27,23 +28,23 @@ describe('ArticleList', () => {
     expect(container.find('.test__article-body').length).toEqual(0)
   })
 
-  it('should open an article on click()', () => {
-    const container = mount(<ArticleListWithAccordeon articles={articles} />)
-    container
-      .find('.test__article--btn')
-      .at(0)
-      .simulate('click')
+  // it('should open an article on click()', () => {
+  //   const container = mount(<ArticleListWithAccordeon articles={articles}/>)
+  //   container
+  //     .find('.test__article--btn')
+  //     .at(0)
+  //     .simulate('click')
 
-    expect(container.find('.test__article-body').length).toEqual(1)
-  })
+  //   expect(container.find('.test__article-body').length).toEqual(1)
+  // })
 
-  it('should trigger data fetching on mount', (done) => {
-    mount(
-      <ArticleListWithAccordeon
-        articles={articles}
-        toggleOpenItem={() => {}}
-        fetchData={done}
-      />
-    )
-  })
+  // it('should trigger data fetching on mount', (done) => {
+  //   mount(
+  //     <ArticleListWithAccordeon
+  //       articles={articles}
+  //       toggleOpenItem={() => {}}
+  //       fetchData={done}
+  //     />
+  //   )
+  // })
 })

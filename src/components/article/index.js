@@ -18,19 +18,16 @@ class Article extends PureComponent {
       this.setState({ commentOpen: false })
     } else {
       this.setState({ commentOpen: true })
-      console.log(this.state.inProp)
     }
-    console.log(this.state.commentOpen)
   }
   render() {
     const { inProp } = this.state
     const { article, isOpen } = this.props
     return (
       <div>
-        <CSSTransition in={inProp} timeout={2000} classNames="article">
-          <h3 ref={this.getTitleRef}>{article.title}</h3>
-        </CSSTransition>
+        <h3 ref={this.getTitleRef}>{article.title}</h3>
         <button
+          className="test__article--btn"
           onClick={() => {
             this.state.inProp
               ? this.setState({
@@ -44,11 +41,11 @@ class Article extends PureComponent {
         </button>
         {isOpen && (
           <div>
-            <section>{article.text}</section>
+            <CSSTransition in={inProp} timeout={200} classNames="article">
+              <section>{article.text}</section>
+            </CSSTransition>
 
-            <button onClick={this.handlerClick} className="test__article-btn">
-              Comments
-            </button>
+            <button onClick={this.handlerClick}>Comments</button>
             {this.state.commentOpen &&
               !this.state.hasError && (
                 <CommentsList comments={article.comments} />

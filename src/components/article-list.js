@@ -9,6 +9,7 @@ export class ArticleList extends Component {
 
   get body() {
     const { articles, toggleOpenItem, openItemId } = this.props
+    //  console.log(typeof articles)
     return articles.map((item) => (
       <li key={item.id} className="test__article-list--item">
         <Article
