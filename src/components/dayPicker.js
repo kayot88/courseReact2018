@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import DayPicker, { DateUtils } from 'react-day-picker'
+import { addDateToDayPicker, resetDate } from '../ac'
 import 'react-day-picker/lib/style.css'
 
-export default class DayPickerComponent extends Component {
+class DayPickerComponent extends Component {
   static defaultProps = {
-    numberOfMonths: 2
+    numberOfMonths: 5
   }
   constructor(props) {
     super(props)
@@ -18,18 +20,21 @@ export default class DayPickerComponent extends Component {
       to: undefined
     }
   }
-
   handleDayClick(day) {
+    const { addDateToDayPicker } = this.props
     const range = DateUtils.addDayToRange(day, this.state)
-    console.log(this.state)
+    addDateToDayPicker(range)
     this.setState(range)
   }
 
   handleResetClick() {
+    console.log('RESET')
+    this.props.resetDate()
     this.setState(this.getInitialState())
   }
   render() {
     const { from, to } = this.state
+    // console.log(from, to)
     const modifiers = { start: from, end: to }
     return (
       <div className="RangeExample">
@@ -58,3 +63,8 @@ export default class DayPickerComponent extends Component {
     )
   }
 }
+
+export default connect(
+  null,
+  { addDateToDayPicker, resetDate }
+)(DayPickerComponent)

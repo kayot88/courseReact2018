@@ -9,8 +9,15 @@ export class ArticleList extends Component {
   }
 
   get body() {
-    const { articles, toggleOpenItem, openItemId } = this.props
-    return articles.map((item) => (
+    const { articles, toggleOpenItem, openItemId, range } = this.props
+    const { from, to } = range
+    const newArticles = articles.filter((item) => {
+      const parsed = Date.parse(item.date)
+      return parsed <= to && parsed >= from
+    })
+    console.log(newArticles)
+
+    return newArticles.map((item) => (
       <li key={item.id} className="test__article-list--item">
         <Article
           article={item}
@@ -30,5 +37,6 @@ export class ArticleList extends Component {
 const ArticleListWithAccordeon = accordeon(ArticleList)
 
 export default connect((state) => ({
-  articles: state.articles
+  articles: state.articles,
+  range: state.range
 }))(ArticleListWithAccordeon)
