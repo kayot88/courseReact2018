@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import testDecorator from '../decorators/testDecorator'
-import { selectorComments } from '../selectors'
+import { createSelectorComments } from '../selectors'
 
 class UserComment extends Component {
   render() {
-    console.log(this.props)
     const { comment, openComment, handlerBtnClick } = this.props
-    console.log(comment)
     return (
       <div>
         <button onClick={handlerBtnClick}>
@@ -23,7 +21,11 @@ class UserComment extends Component {
   }
 }
 
-export default connect((state, ownProps) => ({
-  comment: selectorComments(state, ownProps.userComment)
-  // comment: state.comments.find((item) => item.id === ownProps.userComment.id)
-}))(testDecorator(UserComment))
+const createMapStateToProps = () => {
+  const selectorComments = createMapStateToProps()
+  return (state, ownProps) => ({
+    comment: selectorComments(state, ownProps.userComment)
+  })
+}
+
+export default connect()(testDecorator(UserComment))

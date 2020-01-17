@@ -17,12 +17,9 @@ export const filteredArticles = createSelector(
   }
 )
 
-export const selectorComments = createSelector(
-  commentsSelector,
-  idSelector,
-  (comments, id) => {
-    console.log(id)
+export const createSelectorComments = () =>
+  createSelector(commentsSelector, idSelector, (comments, id) => {
+    // console.log(id)
     console.log('---', 'comments selector')
     return comments.find((item) => item.id === id)
-  }
-)
+  })
