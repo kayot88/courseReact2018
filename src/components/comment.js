@@ -5,15 +5,16 @@ import { createSelectorComments } from '../selectors'
 
 class UserComment extends Component {
   render() {
-    const { comment, openComment, handlerBtnClick } = this.props
+    const { userComment, openComment, handlerBtnClick } = this.props
+    console.log(this.props)
     return (
       <div>
         <button onClick={handlerBtnClick}>
-          {comment ? comment.user : 'close'}
+          {userComment ? userComment.user : 'close'}
         </button>
         {openComment && (
           <div>
-            {comment.text} by <b>{comment.user}</b>
+            {userComment.text} by <b>{userComment.user}</b>
           </div>
         )}
       </div>
@@ -22,10 +23,10 @@ class UserComment extends Component {
 }
 
 const createMapStateToProps = () => {
-  const selectorComments = createMapStateToProps()
+  const selectorComments = createSelectorComments()
   return (state, ownProps) => ({
     comment: selectorComments(state, ownProps.userComment)
   })
 }
 
-export default connect()(testDecorator(UserComment))
+export default connect(createMapStateToProps)(testDecorator(UserComment))
