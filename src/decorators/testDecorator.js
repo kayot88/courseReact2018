@@ -5,9 +5,8 @@ export default (OriginalComponent) => {
     state = { openComment: false }
 
     handlerBtnClick = () => {
-      console.log('name_click', this.state.openComment)
-      this.setState((state) => {
-        openComment: !state.openComment
+      this.setState({
+        openComment: !this.state.openComment
       })
     }
     render() {
