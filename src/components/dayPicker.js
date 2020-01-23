@@ -6,7 +6,7 @@ import 'react-day-picker/lib/style.css'
 
 class DayPickerComponent extends Component {
   static defaultProps = {
-    numberOfMonths: 5
+    numberOfMonths: 8
   }
   constructor(props) {
     super(props)

@@ -1,0 +1,6 @@
+import { ADD_COMMENT } from '../constants'
+
+export default (store) => (next) => (action) => {
+  if (!action.generatedId) return next(action)
+  next({ ...action, randomId: Date.now().toString() })
+}

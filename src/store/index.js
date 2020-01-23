@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import rootReducer from '../reducers'
 import logger from '../middleware/logger'
+import addCommentId from '../middleware/addCommentId'
 
 const composeEnhancers = composeWithDevTools({
   name: `Redux`,
@@ -13,7 +14,7 @@ const composeEnhancers = composeWithDevTools({
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(logger))
+  composeEnhancers(applyMiddleware(addCommentId, logger))
 )
 
 // dev only!!

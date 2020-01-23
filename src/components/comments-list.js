@@ -5,6 +5,8 @@ import UserComment from './comment'
 import { commentSelector } from '../selectors'
 
 const CommentsList = ({ comments, normalizedComments }) => {
+  console.log(normalizedComments)
+
   return normalizedComments.map((userComment) => (
     <div key={userComment.id} className="test__comments-list--item">
       <UserComment userComment={userComment} />
@@ -13,10 +15,11 @@ const CommentsList = ({ comments, normalizedComments }) => {
 }
 
 CommentsList.propTypes = {
-  comments: PropTypes.array.isRequired
+  // comments: PropTypes.array.isRequired
 }
 
 export default connect((state, ownProps) => {
+  console.log(typeof ownProps.comments)
   return {
     normalizedComments: ownProps.comments.map((id) =>
       state.comments.find((comment) => comment.id === id)

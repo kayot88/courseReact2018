@@ -6,7 +6,7 @@ import { createSelectorComments } from '../selectors'
 class UserComment extends Component {
   render() {
     const { userComment, openComment, handlerBtnClick } = this.props
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div>
         <button onClick={handlerBtnClick}>

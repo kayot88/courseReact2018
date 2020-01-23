@@ -5,9 +5,14 @@ export const articlesSelector = (state) => state.articles
 export const commentsSelector = (state) => state.comments
 export const idSelector = (_, props) => props.id
 
+export const articleListSelector = createSelector(
+  articlesSelector,
+  (articlesMap) => Object.values(articlesMap)
+)
+
 export const filteredArticles = createSelector(
   rangeSelector,
-  articlesSelector,
+  articleListSelector,
   (range, articles) => {
     const { from, to } = range
     return articles.filter((item) => {

@@ -12,6 +12,7 @@ export class ArticleList extends Component {
 
   get body() {
     const { articles, toggleOpenItem, openItemId, range } = this.props
+    // console.log(openItemId)
 
     return articles.map((item) => (
       <li key={item.id} className="test__article-list--item">
@@ -19,6 +20,7 @@ export class ArticleList extends Component {
           article={item}
           isOpen={openItemId === item.id}
           toggleOpen={toggleOpenItem}
+          openId={openItemId}
         />
       </li>
     ))
