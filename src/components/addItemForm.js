@@ -23,7 +23,8 @@ const AddItemForm = ({ addComment, openId }) => {
       onSubmit={(values, actions) => {
         console.log(values, openId)
         addComment(values, openId)
-        actions.resetForm()
+
+        // actions.resetForm()
       }}
     >
       {({

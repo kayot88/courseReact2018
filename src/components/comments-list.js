@@ -19,10 +19,9 @@ CommentsList.propTypes = {
 }
 
 export default connect((state, ownProps) => {
-  console.log(typeof ownProps.comments)
   return {
-    normalizedComments: ownProps.comments.map((id) =>
-      state.comments.find((comment) => comment.id === id)
-    )
+    normalizedComments: ownProps.comments.map((id) => {
+      return state.comments[id]
+    })
   }
 })(CommentsList)

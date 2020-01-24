@@ -4,16 +4,27 @@ import { normalizedArticles as defaultArticles } from '../fixtures'
 
 export default (articleStore = defaultArticles, action) => {
   const { type, payload, response, error, randomId } = action
-  // console.log(payload.id)
+  const newArticlesObj = articleStore.reduce(
+    (acc, article) => ({
+      ...acc,
+      [article.id]: article
+    }),
+    {}
+  )
   switch (type) {
     case DELETE_ARTICLE:
       return defaultArticles.filter((article) => article.id !== payload.id)
-    // case ADD_COMMENT:
-    //   const article = articleStore[payload.articleId]
-    //   return {
-    //     ...articleStore,
-    //     [payload.articleId]: { comments: article.comments.concat(randomId) }
-    //   }
+    case ADD_COMMENT:
+      const article = articleStore.find(
+        (article) => article.id === payload.articleId
+      )
+      return {
+        ...newArticlesObj,
+        [payload.articleId]: {
+          ...article,
+          comments: (article.comments || []).concat(randomId)
+        }
+      }
 
     default:
       articleStore
